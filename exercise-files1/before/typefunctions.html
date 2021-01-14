@@ -1,0 +1,43 @@
+<html>
+<head>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.js"></script>
+</head>
+<body>
+	<script type="text/javascript">
+
+    //function callAnotherFunction(times, delay, funcToCall) {
+    function callAnotherFunction(timesArg, delayArg, funcToCallArg) { //Want to make these params generic with defaults
+		var times = $.isNumeric(timesArg) ? timesArg : 3; //If it's numeric, use it, otherwise default to 3.
+		var delay = $.isNumeric(delayArg) ? delayArg : 1000;
+		var funcToCall =
+			$.isFunction(timesArg) ? timesArg : //There is no default overloading, this is how overloading is implimented.
+			$.isFunction(delayArg) ? delayArg :
+			funcToCallArg; 
+		
+		var i = 0;
+		(function loopit(){
+			i++;
+			funcToCall();
+			if(i < times)
+				setTimeout(loopit, delay);
+		})();
+	
+	}
+	
+	function functionToCall() {
+		$("#output").append("<br />function called");
+	}
+	
+	jQuery(function() {
+		callAnotherFunction(functionToCall);//Overladed function and can pass first 2 params for full control
+	});
+	
+	</script>
+	
+	<h1>Type Test Functions Demo</h1>
+	
+	<div id="output">
+	
+	</div>
+</body>
+</html>
