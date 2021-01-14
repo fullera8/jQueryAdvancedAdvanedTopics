@@ -6,7 +6,19 @@
 	<script type="text/javascript">
 
 	$(function() {
-		
+        $.fn.everyThird = function () {//Pushes every 3rd element in a collection onto the jQuery object stack
+			var arr = [];
+			$.each(this, function (index, val) {
+                if ((index + 1) % 3 == 0 ) {
+					arr.push(val);
+                }
+			});
+            return this.pushStack(arr, "everyThird", ""); //.pushStack adds the collection onto the jQuery stack
+		}
+
+		$("#clickme").click(function () {
+			$("div").everyThird().css("color","Red").end().css("font-weight","bold");
+		});
 	});
 		
 	</script>
