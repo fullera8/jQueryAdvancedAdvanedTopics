@@ -4,10 +4,43 @@
 </head>
 <body>
 	<script type="text/javascript">
-			
-	$(function() {
-		
-	});
+		var myArray = [1, 2, 3, 3, 4, 4, 5];
+		var myArray2 = [6,7,8];
+		var myArrayTrueCheck = 4;
+		var myArrayFalseCheck = 44;
+
+        if ($.inArray(myArrayTrueCheck, myArray) !== -1) { //.inArray returns the first poisition of the value specified in the array or -1 if not found
+            console.log([myArrayTrueCheck, "is in my array at position", ($.inArray(myArrayTrueCheck, myArray) + 1)].join(' '));
+		}
+
+        if ($.inArray(myArrayFalseCheck, myArray) !== -1) { //.inArray returns the first poisition of the value specified in the array or -1 if not found
+            console.log([myArrayFalseCheck, "is in my array at position", ($.inArray(myArrayFalseCheck, myArray) + 1)].join(' '));
+		}
+
+        $.unique(myArray); //.unique Overwrites the original. Sorts DOM elements in place with duplicates removed. 
+		console.log(myArray);
+
+        $.merge(myArray, myArray2); //.merge merges 2 arrays together into the first array, overwiting array 1 but ont overwiriting array 2.
+		console.log(myArray);
+		console.log(myArray2);
+
+		//.map returns an array object from  a collection, the first param is the collection, 
+		//second param is a function of how to manipulate the collection that populates the new array.
+		var myNewArray = $.map(myArray, function (val, index) {
+			return val * 2;
+		});
+		console.log(myNewArray);
+
+		//.grep returns an array object from a collection, the first param is the collection, 
+		//second param is a function of how to filter the collection that populates the new array.
+		var myGrepArray = $.grep(myArray, function (val) {
+			return val % 2 === 0;
+		});
+		console.log(myGrepArray);
+
+		$(function() {
+			console.log($.makeArray($("div"))); //.makeArray returns a JavaScript array from a jQuery wrapped array like object
+		});
 		
 	</script>
 	
