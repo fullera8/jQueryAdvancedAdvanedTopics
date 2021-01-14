@@ -6,19 +6,7 @@
 	<script type="text/javascript">
 
 	$(function() {
-		$.fn.everyThird = function() {
-			var arr = [];
-			$.each(this, function(idx, item) {
-				if(idx%3 == 0)
-					arr.push(item);
-			});
-			return  this.pushStack(arr, "everyThird", "");
-		};
 		
-		$("#clickme").click(function() {
-			var thirds = $("div").everyThird().css("color", "Red").end().css("font-weight", "bold");
-			console.log(thirds);
-		});
 	});
 		
 	</script>
