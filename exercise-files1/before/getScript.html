@@ -6,17 +6,11 @@
 	<script type="text/javascript">
 
 	$(function() {
-		$("input").click(function() {
-			$.getScript("script.js", function(data, textStatus) {
+		$("#clickme").click(function () {
+            $.getScript("script.js", function (data, textStatus) {//.getScript gets other scripts and can callback to manipulate data
 				console.log(textStatus);
-			
-			});
+            });
 		});
-		
-		$("#clickme").ajaxError(function(event, jqXHR, ajaxSettings, thrownError) {
-			console.log(thrownError);
-		});
-		
 	});
 		
 	</script>
