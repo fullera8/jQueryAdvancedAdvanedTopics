@@ -7,9 +7,8 @@
 
 	$(function() {
 		var json = '{"fname" : "john", "lname" : "smith", "age" : 35}';
-		var jsObject = $.parseJSON(json);
-		$("#output").append(jsObject.fname + "<br />" + jsObject.lname + "<br />" + jsObject.age);
-		
+		var jsObject = $.parseJSON(json); //parseJson will turn a json sting into a json object.
+		$('#output').append([jsObject.fname, '<br/>', jsObject.lname, '<br/>', jsObject.age].join(''));
 	});
 		
 	</script>
