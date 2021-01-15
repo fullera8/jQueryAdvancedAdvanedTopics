@@ -18,24 +18,21 @@
 		var cat = {
 			meow: function() { console.log("meow"); }
 		}
-		
+
+		//Create a variable copy of the jQuery $.sub() for safe function modification.
 		var sub = $.sub();
-		
+
+		//manipulate the extend object to be deepExtend but only with 2 objects
 		sub.old_extend = sub.extend;
-		sub.extend = function(target, source) {return sub.old_extend(true, target, source); }
-		
-		var catDog = {};
-		sub.extend(catDog, cat, dog, animal);
-		console.log(catDog.eat);
-		console.log(catDog.bark);
-		console.log(catDog.meow);
-		
-		var catDog = {};
-		$.extend(catDog, cat, dog, animal);
-		console.log(catDog.eat);
-		console.log(catDog.bark);
-		console.log(catDog.meow);
-		
+		sub.extend = function (target, source) {
+			return sub.old_extend(true, target, source);
+		}
+
+		//extend now defaults to deepExtend but only works with 2 params
+		sub.extend(dog, animal);
+		dog.bark();
+		dog.eat()
+
 	});
 		
 	</script>
