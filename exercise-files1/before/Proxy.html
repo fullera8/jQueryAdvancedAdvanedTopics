@@ -4,18 +4,17 @@
 </head>
 <body>
 	<script type="text/javascript">
-	
-	var eventHandlers = {
-		type: "My Event Handler Object",
-		clickButtonHandler: function(event) {
-			console.log(this.type);
+
+		var eventHandlers = {
+			type: "Event Handler Object",
+            clickButtonHandler: function (event) {
+				console.log(this.type); //"this" references the object bound instead of the parent object unless a proxy is setup.
+            }
 		}
-	}
-	
-	$(function() {
-		$("#clickme").click($.proxy(eventHandlers.clickButtonHandler, eventHandlers));
-		
-	});
+
+		$(function () {
+            $('#clickme').click($.proxy(eventHandlers.clickButtonHandler, eventHandlers));// $.proxy takes 2 params, first is action, second is object referenced by "this"
+		});
 		
 	</script>
 	
