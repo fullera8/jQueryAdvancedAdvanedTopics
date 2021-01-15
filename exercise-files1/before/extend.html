@@ -5,32 +5,66 @@
 <body>
 	<script type="text/javascript">
 
+		//creating instanced objects.
 		var animal = {
-			actions: {
-				eat: function() { console.log("I'm eating"); },
-				sit: function() { console.log("I'm sitting"); }
-			}
+            eat: function () {
+				console.log('eating');
+            }
 		}
-		
 		var dog = {
-			actions: {
-				bark: function() { console.log("I'm barking"); },
-				dig: function() { console.log("I'm digging"); }
-			}
-			
+            bark: function () {
+				console.log('barking');
+            }
 		}
-		
-		
-		dog.actions.bark();
-		dog.actions.dig();
-		$.extend(true, dog, animal);
-		dog.actions.eat();
-		dog.actions.sit();
-		console.log(dog.actions.bark);
-		
-		
-		
-		
+		var cat = {
+            meow: function () {
+				console.log('meowing');
+            }
+		}
+		var catDog = {} //empty class to extend the properties of all classes.
+		$.extend(catDog, cat, dog, animal);
+
+		//conflicts overwritten by overwriting class, class original features lost without deepExtend which recursivly includes all properties.
+		var fish = {
+			actions: {
+				eat: function () { console.log('fish eating'); },
+				swim: function () { console.log('fish swimming'); }
+            }
+		}
+        var shark = {
+            actions: {
+                eat: function () { console.log('shark eating'); },
+				swimFast: function () { console.log('shark swimming'); }
+            }
+        }
+
+		//Calling functions 
+		dog.bark();
+		console.log(dog.eat);//does not exist
+
+		//$.extend() merges the contents of two or more objects together into the first object param.
+		//Extand dog with animal
+		$.extend(dog, animal);
+		dog.eat();
+
+		//Extend copies the propeties from one object into another at the time of command. This is not a new reference.
+        animal.eat = function () {
+            console.log('more eating');
+		}
+		animal.eat();
+		dog.eat();
+
+		//catdog can use all other properties even though it was declared as an empty object.
+		catDog.eat();
+		catDog.bark();
+		catDog.meow();
+
+		//shark needs a deepextend to keep swimFast
+		$.extend(true, shark, fish);
+		shark.actions.eat();
+		shark.actions.swim();
+		shark.actions.swimFast();
+
 	</script>
 	
 	<h1>Extend Demo</h1>
