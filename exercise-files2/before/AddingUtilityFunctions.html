@@ -8,18 +8,43 @@
 </head>
 <body>
 	<script type="text/javascript">
-	
-	
+
+		//Adding utility functions before the page load. Simply assign a new function to the utility via $.{utilityName}.{CustomUtilityFunctionName}
+		(function ($) {
+            $.log = function (value) {
+                if (console) {
+					console.log(value);
+				}
+                else {
+                    alert("No Console available in this browser.");
+                }
+			}
+            $.log.group = function (value) {
+                if (console && console.group) {
+					console.group(value);
+				}
+                else {
+					alert("No Console Group available in this browser.");
+                }
+			}
+            $.log.groupEnd = function () {
+                if (console && console.group) {
+                    console.groupEnd();
+                }
+                else {
+                    alert("No Console Group available in this browser.");
+                }
+            }
+		})(jQuery);
 
 
-	$(function() {
-		$.log.group('my group');
-		$.log('hi there');
-		$.log($("div"));
-		$.log.groupEnd();
-		$.log($("div")[0].innerHTML);
-
-	});
+		$(function() {
+			$.log.group('Test Group');
+				$.log('Log test');
+				$.log($('div'));
+			$.log.groupEnd();
+			$.log($('div')[0].innerHTML);
+		});
 		
 	</script>
 	
