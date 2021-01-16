@@ -4,18 +4,20 @@
 </head>
 <body>
 	<script type="text/javascript">
-	
-	$.fx.speeds.slower = 2000;
-	$.fx.speeds.ludicrous = 100;
 
-	$(function() {
-	
-		$("#fadingDiv").click(function() {
-			$(this).fadeOut($("input:radio[name=group1]:checked").val(), function() {
-				$(this).show();
-			});
+		//Can set custom to the fx class directly by calling the child function and giving it a new name. 
+		//Example, give fx speeds a new property "slower" with $.fx.speeds.slower.
+		$.fx.speeds.slower = 2000;
+        $.fx.speeds.ludicrous = 100;
+
+		//When the green box is clicked fade out based on the text value in the radio button in group1. Shows after the fadeOut is complete.
+		$(function () {
+            $("#fadingDiv").click(function () {
+				$(this).fadeOut($('input[name=group1]:checked').val(), function () {
+					$(this).show();
+				});
+            });
 		});
-	});
 		
 	</script>
 	
