@@ -5,27 +5,26 @@
 </head>
 <body>
 	<script type="text/javascript">
+
+		//Similar example to overriding basics. Here overloading $.fn.attr() to accept key value pairs.
+		(function($){
+			$.fn.old_attr = $.fn.attr;
+			$.fn.attr = function (name, value) {
+				var args = [jQuery.myProps[name] || name, value];
+				return $.fn.old_attr.apply(this, args);
+			};
+			$.myProps = {};
+			$.myProps.mcp = "myCustomProperty";
+			$.myProps.pwrln = "propertyWithReallyLongName";
 	
-	(function($){
-		$.fn.old_attr = $.fn.attr;
-		$.fn.attr = function(name, value) {
-			var args = [jQuery.myProps[name] || name, value];
-			return $.fn.old_attr.apply(this, args);
-		};
-		$.myProps = {};
-		$.myProps.mcp = "myCustomProperty";
-		$.myProps.pwrln = "propertyWithReallyLongName";
-	
-	})(jQuery);
+		})(jQuery);
 	
 		
-	$(function() {
-		$.log($("div").attr("mcp"));
-		$("div").attr("mcp", 5);
-		$.log($("div").attr("mcp"));
-		$.log($("div").attr("pwrln"));
-		
-	});
+		$(function() {
+			$.log($('div').attr('myCustomProperty'));		
+			$('div').attr('mcp', 5);		
+			$.log($('div').attr('mcp'));		
+		});
 		
 	</script>
 	

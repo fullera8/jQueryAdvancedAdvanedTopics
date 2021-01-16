@@ -5,25 +5,30 @@
 </head>
 <body>
 	<script type="text/javascript">
+
+		//Only overwrite default jQuery behavior in extreme circumstances as it may break existing features. 
+		//The only "safe" way to do this is via overloading functions.
+		//Here overloading $.merge() to accept 3 arrays.
+		(function ($) {
+			$.old_merge = $.merge;
+			$.merge = function (arrayArg1, arrayArg2, arrayArg3) {
+				$.old_merge(arrayArg1, arrayArg2);
+                if (arrayArg3)
+					$.old_merge(arrayArg1, arrayArg3);
+				return arrayArg1;
+            }
+		})(jQuery);
+			
+
 	
-	(function($){
-		$.old_merge = $.merge;
-		$.merge = function(first, second, third) {
-			$.old_merge(first, second);
-			if(third)
-				$.old_merge(first, third);
-			return first;
-		};
-	})(jQuery);
+		$(function() {
 	
-	$(function() {
-	
-		var array1 = [1,2,3];
-		var array2 = [4,5,6];
-		var array3 = [7,8,9];
-		var merged = $.merge(array1, array2, array3);
-		$.log(merged);
-	});
+			var array1 = [1,2,3];
+			var array2 = [4,5,6];
+			var array3 = [7,8,9];
+			var merged = $.merge(array1, array2, array3);
+			$.log(merged);
+		});
 		
 	</script>
 	

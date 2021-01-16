@@ -5,28 +5,29 @@
 </head>
 <body>
 	<script type="text/javascript">
-	
-	var $sub;
-	(function($){
-		$sub = $.sub();
-		$sub.fn.old_attr = $sub.fn.attr;
-		$sub.fn.attr = function(name, value) {
-			var args = [jQuery.myProps[name] || name, value];
-			return $sub.fn.old_attr.apply(this, args);
-		};
-		$.myProps = {};
-		$.myProps.mcp = "myCustomProperty";
-		$.myProps.pwrln = "propertyWithReallyLongName";
-	
-	})(jQuery);
+
+		//Using $.sub() is a safe way to override. This substitues the functions so you are not overwriting/overloading the originals
+		var $sub;
+		(function($){
+			$sub = $.sub();
+            $sub.fn.old_attr = $sub.fn.attr;
+            $sub.fn.attr = function (name, value) {
+                var args = [jQuery.myProps[name] || name, value];
+                return $sub.fn.old_attr.apply(this, args);
+            };
+            $.myProps = {};
+            $.myProps.mcp = "myCustomProperty";
+            $.myProps.pwrln = "propertyWithReallyLongName";
+		})(jQuery);
 	
 		
-	$(function() {
-		$.log($("div").attr("mcp"));
-		$.log($sub("div").attr("mcp"));
-		
-		
-	});
+		$(function() {
+            $.log($('div').attr('myCustomProperty'));
+            $.log($sub('div').attr('myCustomProperty'));
+            $sub('div').attr('mcp', 5);
+            $.log($('div').attr('mcp'));
+            $.log($sub('div').attr('mcp'));
+		});
 		
 	</script>
 	
