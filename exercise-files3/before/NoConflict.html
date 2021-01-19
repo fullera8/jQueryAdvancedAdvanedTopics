@@ -4,28 +4,35 @@
 </head>
 <body>
 	<script type="text/javascript">
-		// this script will throw an error
-		$.noConflict(); //or $ = null;
-		
-		$.fn.myPlugin = function() {
-			return this;
-		};
+
+		//$.noConflict();
+
+		//Executes immediatly and scopes evertything created within (function ($){ ... })(jQuery)
+        (function ($, window, document) {//Function line contains variable names for the last line statement.
+            $.fn.myPlugin = function () {
+				//window.location = 'newLoc.html';
+				//console.log(this[0]);
+				var newArray = [this[0]]
+				//By Using "this" in the return, this functionality is now chainable.
+				//Either return "this", "this.each()", or "this.pushStack()" for chainability
+				return this.pushStack(newArray);
+            };
+			//Last line are elements/libraries to pass into whole statement for minification (compression). 
+			//This practice will make the lib using these more efficent.
+		})(jQuery, window, document);
+
+        $(function () {
+            console.log($('div').myPlugin());
+            console.log($('div').myPlugin().end());//Demo of chainability
+        });
 		
 	</script>
+
+    <div id="div1">A Div</div>
+    <div id="div2">A Div 2 </div>
 	
 	<script type="text/javascript">
-		// this script will work
-		$.noConflict();
-		
-		(function($){
-			$.fn.myPlugin = function() {
-				console.log('it worked');
-				return this;
-			};
-		})(jQuery);
-		
-		jQuery('div').myPlugin();
-		
+       
 	</script>
 	
 </body>
