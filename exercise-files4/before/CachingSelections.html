@@ -9,7 +9,13 @@
 
 	
 $(function() {
-	
+
+	//Improve performance by 
+	//   1. use latest jQuery
+	//   2. cache jQuery selectors
+	//   3. cache any page element used more than once
+	//   4. use element properties when possible
+
 	// BAD
 	console.time("no caching");
 	for(var i=0; i<10000; i++) {
