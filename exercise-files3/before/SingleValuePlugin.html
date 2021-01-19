@@ -6,13 +6,16 @@
 	<script type="text/javascript">
 
 	(function($){
-		$.fn.average = function() {
+		//When you put a single output into function($), meaning there is no need for chainability, just return regular output and 
+		// wrap the function with $.fn.{singleValuePluginFunctionName}.
+		$.fn.average = function () {
 			var sum = 0;
-			this.each(function() {
+            this.each(function () {
 				sum += parseFloat($(this).html());
-			});
-			return sum / $(this).length;
-		}
+			})
+            var avg = Math.round(((sum / $(this).length) + Number.EPSILON) * 100) / 100
+			return (["average of divs", avg]).join(' ');
+        }
 	})(jQuery);
 	
 	$(function() {
