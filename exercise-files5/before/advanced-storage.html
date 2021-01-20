@@ -9,34 +9,37 @@
 
 	
 $(function() {
-
 	var div1 = $("#div1");
-	
-	var object1 = { val1: 3, val2: "hi" }
-	div1.data("object1", object1);
-	
-	var val1 = div1.data("object1").val1;
-	var val2 = div1.data("object1").val2;
-	
-	var myFunc = function() {
-		console.log("i've called my function");
-	}
-	div1.data("func", myFunc);
-	div1.data("func")();
-	
-	var object2 = { val1: 3, val2: "hi", sayHi: function() {console.log("hi there"); } }
-	div1.data("object2", object2);
-	console.log(div1.data("object2").sayHi);
-	div1.data("object2").sayHi();
-	
-	div1.data("dom", div1.get(0));
-	console.log(div1.data("dom"));
-	
-	div1.data("jq", $("#div1"));
-	console.log(div1.data("jq"));
-	
-	$.data(div1.get(0), "more", 25);
+	var object = { val1: 1, val2: 'hi' }
 
+	//data() can store any element type including things like a JS object.
+	div1.data('object1', object);
+	//Retrieving am object through data keeps all of the same properties and structures so we can manipulate it like any regular object.
+    var val1 = div1.data('object1').val1;
+	var val2 = div1.data('object1').val2;
+	console.log([val1, val2].join(' '));
+
+	//data() can also store functions, calling that data element runs the function (regular read with () appendended).
+    var myFunc = function () {
+		console.log('myFunc has been called');
+	}
+	div1.data('func', myFunc);
+	div1.data('func')();
+
+	//Objects containing functions can also be passed to data() and be called with data callback.
+    var objectFunction = {
+		val1: 1, val2: 'hi', valFunc: function () { console.log('objectFunction.valFunc has been called') }
+	}
+    div1.data('func2', objectFunction);
+	div1.data('func2').valFunc();
+
+	//data() can also store references to the DOM nodes.
+	div1.data('DOMRef', div1.get(0));
+	console.log(div1.data('DOMRef'));
+
+	//In an extreme example, data() can store a jQuery wrapped set, such as itself without circular reference issues.
+	div1.data('divJQSet', $('#div1'));
+	console.log(div1.data('divJQSet'));
 });
 	
 </script>
