@@ -16,11 +16,13 @@ $(function() {
 	div1.data("val2", "a string");
 	div1.data("val3", 3.14);
 	
-	var val1 = $.data(div1.get(0), "val1");
-	
+	//For efficent data retrieval on a jQuery wrapped set, call data() in a $.data($("{elementSelector}").get(0), '{dataValName}'); format
+	var val1 = $.data(div1.get(0), 'val1');
+	console.log(val1);
+
+	//A call to data() with no params retrieves all data elements attached to the element. This is good for a jQuery wrapped set
 	var data = div1.data();
 	console.log(data);
-	
 });
 	
 </script>
