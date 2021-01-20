@@ -8,12 +8,12 @@
 <script type="text/javascript" >
 
 	
-$(function() {
-	
-	console.log($("#div1").data("numeric") + 3);
-	console.log($("#div1").data("string") + 3);
-	console.log($("#div1").data("bool") === true);
-	
+	$(function () {
+
+		//jQuery will use best-guess type casting, meaning it doesn't need explicit type casts.
+		console.log($('#div1').data('numeric') + 3);
+		console.log($('#div1').data('string') + 3);
+        console.log($('#div1').data('bool') === true);
 });
 	
 </script>
