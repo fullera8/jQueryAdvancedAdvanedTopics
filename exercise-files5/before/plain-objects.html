@@ -9,13 +9,14 @@
 
 	
 $(function() {
-
-	var myobj = {val1: 3, val2: "hi", sayHi: function() { console.log("hi there"); } }
-	
-	console.log(myobj);
-	$(myobj).data("val1", 3);
-	console.log(myobj);
-	
+	var myObj = {
+		val1: 1, val2: 'hi', val3: function () { console.log('myObj.val3 function called'); }
+	}
+	//jQuery can use almost anything as a selector including objects. 
+	//This is best used for creating observable properties with data(). 
+	//data() creates a new data object within the parent object but the event listeners can be used on the internal data elements.
+	$(myObj).data("val1", 4);
+	console.log($(myObj).data("val1"));
 });
 	
 </script>
