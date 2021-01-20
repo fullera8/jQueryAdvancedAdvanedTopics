@@ -11,20 +11,26 @@
 $(function() {
 
 	var div1 = $("#div1");
-	
-	div1.on('setData', function(e, key, value) { console.log("data set", key, value); });
-	div1.on('changeData', function(e, key, value) { console.log("data change", key, value); });
-	div1.on('getData', function(e, key, value) { console.log("data get", key, value); });
-	
-	div1.data("val1", 5);
-	var data = div1.data("val1");
-	
-	var div3 = $("#div3");
-	div3.on('getData', function(e, key, value) { return 25; });
-	
-	div3.data('val1', 4);
-	console.log(div3.data("val1"));
-	
+
+	//setData is an event that triggers before the value is set.
+	//To subscribe to this event a function must have an event object, the key, and the value.
+	div1.on('setData', function (e, key, value) {
+		console.log("data set", key, value);
+	});
+
+	//changeData event is functionally identical to setData except the event triggers AFTER the value is set.
+	div1.on('changeData', function (e, key, value) {
+        console.log("data change", key, value);
+	});
+
+	//getData() triggers when data is retrieved.
+    div1.on('getData', function (e, key, value) {
+        console.log("data get", key, value);
+	});
+
+	//When the data events are subscribed, the corresponding events will trigger when data gets, sets, or changes.
+	div1.data('val1', 1); //trigger set/change
+	div1.data('val1');//trigger get
 });
 	
 </script>
