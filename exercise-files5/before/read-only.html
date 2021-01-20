@@ -9,12 +9,11 @@
 
 	
 $(function() {
-	
-	console.log($("#div1").get(0));
-	console.log($("#div1").data("value"));
-	$("#div1").data("value", 4);
-	console.log($("#div1").get(0));
-	
+	//data() can only read from the html node, it cannot write to it. 
+	console.log($('#div1').get(0));
+	console.log($('#div1').data('value'));
+	$('#div1').data('value', 4);
+    console.log($('#div1').get(0));
 });
 	
 </script>
