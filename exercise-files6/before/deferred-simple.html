@@ -7,15 +7,16 @@
 
 <script type="text/javascript" >
 
+//once deferred is resolved, it cannot be resolved again. complete = deferred.done:deferred.resolve(), fail = deferred.fail:deferred.reject(), always = deferred.always:deferred.state()
 var deferred = $.Deferred();
-deferred.done(function() {console.log('resolved'); });
-deferred.fail(function() {console.log('rejected'); });
-deferred.always(function() {console.log('always'); });
+deferred.done(function() {console.log('resolved'); }); //complete
+deferred.fail(function() {console.log('rejected'); }); //fail
+deferred.always(function() {console.log('always'); }); //always
 	
 $(function() {
-	$("#btnResolve").click(function() { deferred.resolve(); });
-	$("#btnReject").click(function() { deferred.reject(); });
-	$("#btnReport").click(function() { console.log(deferred.state()); });
+	$("#btnResolve").click(function() { deferred.resolve(); }); //complete
+	$("#btnReject").click(function() { deferred.reject(); }); //fail
+	$("#btnReport").click(function() { console.log(deferred.state()); }); //retrurn deferred state
 });
 	
 </script>
