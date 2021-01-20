@@ -8,19 +8,23 @@
 <script type="text/javascript" >
 
 	
-$(function() {
-	
-	$("#div1").data("three", 3);
-	$("#div1").data("four", "four");
-	
-	console.log($("#div1").data("three"));
-	console.log($("#div1").data("four"));
-	
-	$("#div1").data("Four", "a different four");
-	console.log($("#div1").data("four"));
-	console.log($("#div1").data("Four"));
-	
-	
+	$(function () {
+		//.data() adds an arbitrary data element to a page element. 2 param stores value, key. 
+		// Value can be any element, key needs to be interpreted as a string.
+		$('#div1').data('three', 3); 
+		$('#div1').data('four', 'four');
+
+		//data() with one element param can also be used to read the data elements generated.
+        console.log($('#div1').data('three'));
+        console.log($('#div1').data('four'));
+
+		//data() stores datatype as well.
+		console.log($('#div1').data('three') === 3);
+		console.log($('#div1').data('three') !== '3');
+
+		//data() is case sensitive and can store multiple elements of the same name but of different case.
+		$('#div1').data('Four', 'differentFour');
+        console.log($('#div1').data('Four'));
 });
 	
 </script>
