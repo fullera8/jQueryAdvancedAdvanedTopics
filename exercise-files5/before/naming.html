@@ -10,13 +10,12 @@
 	
 $(function() {
 
-	var value1 = $("#div1").data("value1");
-	var value2 = $("#div1").data("valueTwo");
-	var value3 = $("#div1").data("valueThree");
-	console.log(value1);
-	console.log(value2);
-	console.log(value3);
-
+	//data() gets/sets the same way with html-5 "data-" attributes but has a syntax that ignores the data- prefix.
+	console.log($('#div1').data('value1'));
+	//If there is a data-value- case, remove the dash between the attribute name and replace with camel case
+	console.log($('#div1').data('valueTwo'));
+	//html-5 does not allow camel case attribute naming convention because of the data() binding methods.
+    console.log($('#div1').data('valueThree')); //Does not work
 });
 	
 </script>
