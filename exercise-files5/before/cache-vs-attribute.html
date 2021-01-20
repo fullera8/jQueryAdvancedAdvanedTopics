@@ -9,12 +9,13 @@
 
 	
 $(function() {
-
-	console.log($("#div1").data("myValue"));
-	$("#div1").data("myValue", "4");
-	console.log($("#div1").data("myValue"));
-	console.log($("#div1").get(0));
-	
+	//While the nodes are read only, jQuery data() is cached and will be read from first and override the nodes.
+	//If data() sets an attribute of the same name as a node, only the attr() method can read the node value from the set on.
+	console.log($('#div1').get(0));
+    console.log($('#div1').data('myValue'));
+	$('#div1').data('myValue', 4)
+    console.log($('#div1').data('myValue'));
+	console.log($('#div1').get(0));
 });
 	
 </script>
